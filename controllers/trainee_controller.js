@@ -1,5 +1,20 @@
 const traineeModel = require("../models/trainee");
 class traineeController {
+
+  static async addtrainee_id_from_person(req,res){
+    var id = req.body.id;
+    var result = await traineeModel.addID(id);
+    if (result) {
+      res.send(result);
+    } else {
+      res.send({
+        message: "ERORR",
+        status: 400,
+      });
+  }
+  }
+
+
     static async getData(req, res) {
         var Email = req.body.Email;
         var Password = req.body.Password;

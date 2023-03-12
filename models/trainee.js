@@ -1,5 +1,6 @@
 const db = require("../config/db");
 class traineeModel{
+
     static getData(Email, Password) {
         return new Promise((resolve) => {
         //`select Email , Password from person where Email = ${Email} AND Password = ${Password}`
@@ -30,8 +31,28 @@ class traineeModel{
       });
   }
 
-  
 
+  static addID(id){
+    return new Promise((resolve) => {
+      db.query('INSERT INTO `trainee` (`Trainee_id`) VALUES (?)', [id], (err, result) => {
+        if (!err) {
+          if(result.affectedRows >0){
+            resolve({
+              message:"Added"
+            })
+           }
+           resolve({
+            message:"Not Added"
+          })
+        }
+        else{
+          resolve({
+            message:"Duplicate entry Id"
+          });
+        }
+      });
+    });
+  }
 
 }
 module.exports = traineeModel;

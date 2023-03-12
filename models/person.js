@@ -60,7 +60,7 @@ class personModel{
                      resolve(false);
                  }
                  else{
-                     resolve(false);
+                     resolve(err);
                  }
             })
         });
